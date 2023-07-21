@@ -1,4 +1,4 @@
-package utp.edu.co.ZonasPromisorias.model.entities;
+package utp.edu.co.zonaspromisorias.model.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,5 +36,5 @@ public class AsociacionEntity {
     private String observacionesAsociacion;
 
     @OneToMany(mappedBy = "asociacion")
-    List<AsociacionProductorEntity> asociacionProductor;
+    private List<AsociacionProductorEntity> asociacionProductor;
 }

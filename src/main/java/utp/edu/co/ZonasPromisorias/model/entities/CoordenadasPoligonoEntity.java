@@ -1,30 +1,27 @@
-package utp.edu.co.ZonasPromisorias.model.entities;
+package utp.edu.co.zonaspromisorias.model.entities;
 
 
-import utp.edu.co.ZonasPromisorias.model.entities.ids.CoordenadasPoligonoId;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import utp.edu.co.zonaspromisorias.model.entities.ids.CoordenadasPoligonoId;
 
-import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.math.BigDecimal;
+import java.io.Serializable;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "coordenadas_poligono")
-public class CoordenadasPoligonoEntity {
+public class CoordenadasPoligonoEntity implements Serializable {
     @EmbeddedId
     private CoordenadasPoligonoId id;
-
-    @Column(name = "coordenada_x")
-    private BigDecimal coordenadaX;
-
-    @Column(name = "coordenada_y")
-    private BigDecimal coordenadaY;
-
-    @ManyToOne
-    @JoinColumn(name = "id_catastral", referencedColumnName = "id_catastral", insertable = false, updatable = false)
-    private LoteEntity lote;
 
 }

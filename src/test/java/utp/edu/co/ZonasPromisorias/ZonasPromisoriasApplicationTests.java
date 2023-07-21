@@ -1,4 +1,4 @@
-package utp.edu.co.ZonasPromisorias;
+package utp.edu.co.zonaspromisorias;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

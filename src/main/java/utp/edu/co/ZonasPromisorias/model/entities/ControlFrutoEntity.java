@@ -1,33 +1,31 @@
-package utp.edu.co.ZonasPromisorias.model.entities;
+package utp.edu.co.zonaspromisorias.model.entities;
 
-import utp.edu.co.ZonasPromisorias.model.entities.ids.ControlFrutoId;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import utp.edu.co.zonaspromisorias.model.entities.ids.ControlFrutoId;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.IdClass;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "control_fruto")
 @IdClass(ControlFrutoId.class)
-public class ControlFrutoEntity {
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "id_catastral", referencedColumnName = "id_catastral")
-    private LoteEntity lote;
-
-    @Id
-    @Column(name = "numero_lote")
-    private Integer numeroLote;
-
-    @Id
-    @Column(name = "fecha")
-    private Date fecha;
+public class ControlFrutoEntity implements Serializable {
+    @EmbeddedId
+    private ControlFrutoId Id;
 
     @Column(name = "tamano")
     private BigDecimal tamano;

@@ -1,25 +1,30 @@
-package utp.edu.co.ZonasPromisorias.model.entities;
+package utp.edu.co.zonaspromisorias.model.entities;
 
-import utp.edu.co.ZonasPromisorias.model.entities.ids.LoteId;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import utp.edu.co.zonaspromisorias.model.entities.ids.LoteId;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "lote")
-public class LoteEntity {
+public class LoteEntity implements Serializable {
     @EmbeddedId
     private LoteId id;
 
     @Column(name = "nombre_lote")
     private String nombreLote;
-
-    @ManyToOne
-    @JoinColumn(name = "id_catastral", insertable = false, updatable = false)
-    private FincaEntity finca;
 
 }
