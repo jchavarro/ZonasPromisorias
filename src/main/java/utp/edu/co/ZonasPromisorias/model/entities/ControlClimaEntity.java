@@ -10,10 +10,10 @@ import utp.edu.co.zonaspromisorias.model.entities.ids.ControlClimaId;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -21,7 +21,6 @@ import java.math.BigDecimal;
 @Builder
 @Entity
 @Table(name = "control_clima")
-@IdClass(ControlClimaId.class)
 public class ControlClimaEntity implements Serializable {
     @EmbeddedId
     private ControlClimaId id;

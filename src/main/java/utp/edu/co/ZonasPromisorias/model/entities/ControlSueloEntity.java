@@ -10,7 +10,6 @@ import utp.edu.co.zonaspromisorias.model.entities.ids.ControlSueloId;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -22,11 +21,10 @@ import java.math.BigDecimal;
 @Builder
 @Entity
 @Table(name = "control_suelo")
-@IdClass(ControlSueloId.class)
 public class ControlSueloEntity implements Serializable {
 
     @EmbeddedId
-    private ControlSueloId Id;
+    private ControlSueloId id;
 
     @Column(name = "medida_ph")
     private BigDecimal medidaPh;
