@@ -5,11 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.List;
 
 @Data
@@ -18,7 +22,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "asociacion")
-public class AsociacionEntity {
+public class AsociacionEntity implements Serializable {
     @Id
     @Column(name = "nit_asociacion")
     private Integer nitAsociacion;
@@ -35,6 +39,6 @@ public class AsociacionEntity {
     @Column(name = "observaciones_asociacion")
     private String observacionesAsociacion;
 
-    @OneToMany(mappedBy = "asociacion")
-    private List<AsociacionProductorEntity> asociacionProductor;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "asociaciones")
+    private List<ProductorEntity> productores;
 }
