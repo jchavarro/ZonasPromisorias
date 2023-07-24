@@ -18,7 +18,7 @@ import java.io.Serializable;
 public class LoteId implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_catastral")
-    private FincaEntity fincaEntity;
+    private FincaEntity finca;
 
     @Column(name = "numero_lote")
     private Integer numeroLote;

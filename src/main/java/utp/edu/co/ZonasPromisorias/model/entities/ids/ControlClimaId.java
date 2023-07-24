@@ -19,7 +19,7 @@ public class ControlClimaId implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_catastral", referencedColumnName = "id_catastral", insertable = false, updatable = false)
     @JoinColumn(name = "numero_lote", referencedColumnName = "numero_lote", insertable = false, updatable = false)
-    private LoteEntity loteEntity;
+    private LoteEntity lote;
 
     @Column(name = "fecha")
     private Date fecha;
