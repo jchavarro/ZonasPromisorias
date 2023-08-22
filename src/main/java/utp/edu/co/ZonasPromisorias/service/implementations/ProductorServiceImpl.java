@@ -7,15 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import utp.edu.co.zonaspromisorias.exceptions.types.NotFoundException;
 import utp.edu.co.zonaspromisorias.model.entities.ProductorEntity;
-import utp.edu.co.zonaspromisorias.model.repositories.AsociacionRepository;
 import utp.edu.co.zonaspromisorias.model.repositories.ProductorRepository;
 import utp.edu.co.zonaspromisorias.service.interfaces.ProductorService;
 import utp.edu.co.zonaspromisorias.web.dto.ProductorDto;
 
+import static utp.edu.co.zonaspromisorias.service.utils.factories.ProductorFactory.crearProductorEntityPorProductorDto;
+
 @Service
 @AllArgsConstructor
 @Slf4j
-public class ProductosServiceImpl implements ProductorService {
+public class ProductorServiceImpl implements ProductorService {
 
     /**
      * Permite la conversión de un objeto a otro que tenga atributos en común.
@@ -39,7 +40,7 @@ public class ProductosServiceImpl implements ProductorService {
         log.info("Creacion de Productor : " + productorDto.getNitProductor());
         if (Boolean.TRUE.equals(validateProductor(productorDto))) {
             ProductorEntity productor = productorRepository
-                    .save(mapper.map(productorDto, ProductorEntity.class));
+                    .save(crearProductorEntityPorProductorDto(productorDto));
             return mapper.map(productor, ProductorDto.class);
         } else throw new NotFoundException("Los campos de nit y nombre son obligatorios "
                     + productorDto.getNitProductor());

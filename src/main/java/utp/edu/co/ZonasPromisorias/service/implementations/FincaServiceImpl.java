@@ -64,9 +64,9 @@ public class FincaServiceImpl implements FincaService {
     }
 
     @Override
-    public List<FincaDto> obtenerFincas() {
+    public List<FincaDto> obtenerFincas(final Integer id) {
         log.info("Consulta de Fincas");
-        return fincaRepository.findAll().stream()
+        return fincaRepository.findByProductorNitProductor(id).stream()
                 .map(fincaEntity -> mapper.map(fincaEntity, FincaDto.class))
                 .collect(Collectors.toList());
     }

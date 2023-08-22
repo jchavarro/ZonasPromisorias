@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_datacate01
+    username: root
+    password: jccapc
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: none
+      show-sql: true
+      properties:
+        hibernate.format_sql: true
+        hibernate.use_sql_comments: true
+        hibernate.type: trace
+        hibernate.connection.characterEncoding: UTF-8
+        hibernate.connection.CharSet: UTF-8
+        hibernate.connection.useUnicode: true
+  security:
+    oauth2:
+      client:
+        registration:
+          custom-client:
+            client-name: auth-service
+            scope: user_info
+            provider: custom-provider
+            client-authentication-method: basic
+            authorization-grant-type: authorization_code
+        provider:
+          custom-provider:
+            token-uri: http://localhost:8080/auth/token
+            authorization-uri: http://localhost:8080/auth/oauth/authorize
+            user-info-uri: http://localhost:8080/auth/user/me
+            user-name-attribute: name

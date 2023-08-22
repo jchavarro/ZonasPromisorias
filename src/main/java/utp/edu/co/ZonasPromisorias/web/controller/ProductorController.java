@@ -26,7 +26,7 @@ public class ProductorController {
         return new ResponseEntity<>(productorService.obtenerProductorPorId(id), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/registro")
     public ResponseEntity<ProductorDto> guardarProductor(@RequestBody final ProductorDto productorDto) {
         return new ResponseEntity<>(productorService.guardarProductor(productorDto), HttpStatus.CREATED);
     }

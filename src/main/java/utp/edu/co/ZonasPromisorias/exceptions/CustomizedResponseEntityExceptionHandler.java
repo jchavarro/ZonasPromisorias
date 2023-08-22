@@ -28,7 +28,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
      * @return Respuesta de excepcion.
      */
     @ExceptionHandler(BadRequestException.class)
-    public final ResponseEntity<ExceptionResponse> handleBadRequestException(final NotFoundException ex,
+    public final ResponseEntity<ExceptionResponse> handleBadRequestException(final BadRequestException ex,
                                                                              final WebRequest request) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),
                 request.getDescription(false), HttpStatus.BAD_REQUEST.getReasonPhrase());
@@ -58,8 +58,9 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
      * @return Respuesta de excepcion.
      */
     @ExceptionHandler(UnprocessableEntityException.class)
-    public final ResponseEntity<ExceptionResponse> handleUnprocessableEntityException(final NotFoundException ex,
-                                                                                      final WebRequest request) {
+    public final ResponseEntity<ExceptionResponse> handleUnprocessableEntityException(
+            final UnprocessableEntityException ex,
+            final WebRequest request) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),
                 request.getDescription(false), HttpStatus.BAD_REQUEST.getReasonPhrase());
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);

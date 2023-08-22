@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,9 +50,28 @@ public class ProductorEntity implements Serializable {
     @Column(name = "observaciones_productor")
     private String observacionesProductor;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Basic(optional = false)
+    @Column(name = "nombre_usuario")
+    private String nombreUsuario;
+
+    @Basic(optional = false)
+    @Column(name = "contrasena")
+    private String contrasena;
+
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "asociacion_productor",
             joinColumns = @JoinColumn(name = "nit_asociacion"),
             inverseJoinColumns = @JoinColumn(name = "nit_productor"))
     private List<AsociacionEntity> asociaciones;
+
+    /**
+     * lista de roles asociados al usuario.
+     */
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "productor_rol", joinColumns
+            = @JoinColumn(name = "nit_productor",
+            referencedColumnName = "nit_productor"),
+            inverseJoinColumns = @JoinColumn(name = "id_rol",
+                    referencedColumnName = "id_rol"))
+    private List<RolEntity> roles;
 }

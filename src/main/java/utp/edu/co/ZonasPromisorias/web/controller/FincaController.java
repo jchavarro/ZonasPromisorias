@@ -29,8 +29,8 @@ public class FincaController {
     }
 
     @GetMapping("all")
-    public ResponseEntity<List<FincaDto>> obtenerFincas() {
-        return new ResponseEntity<>(fincaService.obtenerFincas(), HttpStatus.OK);
+    public ResponseEntity<List<FincaDto>> obtenerFincasPorProductor(@RequestParam("idproductor") final Integer id) {
+        return new ResponseEntity<>(fincaService.obtenerFincas(id), HttpStatus.OK);
     }
 
     @PostMapping

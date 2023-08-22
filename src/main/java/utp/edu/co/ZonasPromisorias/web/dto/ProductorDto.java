@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import java.util.List;
 
 @Setter
@@ -28,6 +30,10 @@ public class ProductorDto {
     private String imagenProductor;
 
     private String observacionesProductor;
+
+    private String nombreUsuario;
+
+    private String contrasena;
 
     private List<AsociacionDto> asociaciones;
 }

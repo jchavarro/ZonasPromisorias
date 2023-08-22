@@ -5,12 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import utp.edu.co.zonaspromisorias.model.entities.LoteEntity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Data
 @AllArgsConstructor
@@ -18,11 +19,11 @@ import java.util.Date;
 @Embeddable
 public class ControlSueloId implements Serializable {
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_catastral", referencedColumnName = "id_catastral", insertable = false, updatable = false)
     @JoinColumn(name = "numero_lote", referencedColumnName = "numero_lote", insertable = false, updatable = false)
     private LoteEntity lote;
 
     @Column(name = "fecha")
-    private Date fecha;
+    private Timestamp fecha;
 }

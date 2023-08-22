@@ -13,5 +13,5 @@ public interface FincaService {
 
     Boolean eliminarFinca(Integer id);
 
-    List<FincaDto> obtenerFincas();
+    List<FincaDto> obtenerFincas(Integer id);
 }

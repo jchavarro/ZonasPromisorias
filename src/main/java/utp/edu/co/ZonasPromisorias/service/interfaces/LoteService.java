@@ -7,7 +7,7 @@ import java.util.List;
 public interface LoteService {
     LoteDto obtenerLotePorId(Integer idCatastral, Integer numeroLote);
 
-    List<LoteDto> obtenerLotesPorIdCatastral();
+    List<LoteDto> obtenerLotesPorIdCatastral(Integer idCatastral);
 
     LoteDto guardarLote(LoteDto loteDto);
 

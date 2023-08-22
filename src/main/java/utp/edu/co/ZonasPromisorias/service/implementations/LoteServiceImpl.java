@@ -11,12 +11,19 @@ import utp.edu.co.zonaspromisorias.model.entities.LoteEntity;
 import utp.edu.co.zonaspromisorias.model.entities.ids.LoteId;
 import utp.edu.co.zonaspromisorias.model.repositories.LoteRepository;
 import utp.edu.co.zonaspromisorias.service.interfaces.LoteService;
+import utp.edu.co.zonaspromisorias.service.utils.factories.LoteFactory;
 import utp.edu.co.zonaspromisorias.web.dto.FincaDto;
 import utp.edu.co.zonaspromisorias.web.dto.LoteDto;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static utp.edu.co.zonaspromisorias.service.utils.factories.LoteFactory.crearLoteDtoPorLoteEntity;
+import static utp.edu.co.zonaspromisorias.service.utils.factories.LoteFactory.crearLoteEntityPorLoteDto;
 
 @Service
 @Slf4j
@@ -36,53 +43,57 @@ public class LoteServiceImpl implements LoteService {
     private EntityManager entityManager;
 
     @Override
+    @Transactional
     public LoteDto obtenerLotePorId(Integer idCatastral, Integer numeroLote) {
         log.info("Consulta de Lote : " + idCatastral + " " + numeroLote);
-        LoteId loteId = new LoteId();
-        FincaEntity fincaEntity = new FincaEntity();
-        fincaEntity.setIdCatastral(idCatastral);
-        loteId.setFinca(fincaEntity);
-        loteId.setNumeroLote(numeroLote);
-        entityManager.close();
-        LoteEntity loteEntity = loteRepository.findById(loteId)
+        LoteEntity loteEntity = loteRepository.findById(LoteId.builder()
+                        .finca(FincaEntity.builder().idCatastral(idCatastral).build())
+                        .numeroLote(numeroLote).build())
                 .orElseThrow(() -> new NotFoundException("Lote no encontrado"));
-
-
-        LoteDto loteDTO = new LoteDto();
-        loteDTO.setFinca(mapper.map(loteEntity.getId().getFinca(), FincaDto.class));
-        loteDTO.setNumeroLote(loteEntity.getId().getNumeroLote());
-        loteDTO.setNombreLote(loteEntity.getNombreLote());
-
-        return loteDTO;
+        return crearLoteDtoPorLoteEntity(loteEntity);
     }
 
     @Override
     public LoteDto guardarLote(LoteDto loteDto) {
         log.info("Creacion de Lote : " + loteDto.getNombreLote());
         if (Boolean.TRUE.equals(validateLote(loteDto))) {
-            LoteEntity loteEntity = mapper.map(loteDto, LoteEntity.class);
-            loteEntity.setId(new LoteId(mapper.map(loteDto.getFinca(), FincaEntity.class), loteDto.getNumeroLote()));
-            LoteEntity loteEntity1 = loteRepository.save(loteEntity);
-            return mapper.map(loteEntity1, LoteDto.class);
+            return crearLoteDtoPorLoteEntity(loteRepository.save(crearLoteEntityPorLoteDto(loteDto)));
         } else throw new NotFoundException("Los campos de nombre y finca son obligatorios ");
     }
 
     @Override
-    public List<LoteDto> obtenerLotesPorIdCatastral() {
-        return null;
+    public List<LoteDto> obtenerLotesPorIdCatastral(final Integer idCatastral) {
+        log.info("Consulta de Lotes por idCatastral : " + idCatastral);
+        return loteRepository.findByidFincaIdCatastral(idCatastral).stream()
+                .map(LoteFactory::crearLoteDtoPorLoteEntity)
+                .collect(Collectors.toList());
     }
 
     @Override
     public LoteDto actualizarLote(LoteDto loteDto) {
-        return null;
+        log.info("Actualizacion de Lote : " + loteDto.getNombreLote());
+        if (Boolean.TRUE.equals(validateLote(loteDto))) {
+            LoteEntity loteEntity = loteRepository.findById(LoteId.builder()
+                            .finca(FincaEntity.builder().idCatastral(loteDto.getIdCatastral()).build())
+                            .numeroLote(loteDto.getNumeroLote()).build())
+                    .orElseThrow(() -> new NotFoundException("Lote no encontrado"));
+            loteEntity.setNombreLote(loteDto.getNombreLote());
+            return crearLoteDtoPorLoteEntity(loteRepository.save(loteEntity));
+        } else throw new NotFoundException("Los campos de nombre y finca son obligatorios ");
     }
 
     @Override
     public Boolean eliminarLote(Integer idCatastral, Integer numeroLote) {
-        return null;
+        log.info("Eliminacion de Lote : " + idCatastral + " " + numeroLote);
+        LoteEntity loteEntity = loteRepository.findById(LoteId.builder()
+                        .finca(FincaEntity.builder().idCatastral(idCatastral).build())
+                        .numeroLote(numeroLote).build())
+                .orElseThrow(() -> new NotFoundException("Lote no encontrado"));
+        loteRepository.delete(loteEntity);
+        return Boolean.TRUE;
     }
 
     private Boolean validateLote(LoteDto loteDto) {
-        return loteDto.getNombreLote() != null && loteDto.getFinca() != null;
+        return loteDto.getNombreLote() != null && loteDto.getIdCatastral() != null;
     }
 }

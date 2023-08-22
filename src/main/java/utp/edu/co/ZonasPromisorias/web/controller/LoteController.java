@@ -33,7 +33,7 @@ public class LoteController {
     @GetMapping("all")
     public ResponseEntity<List<LoteDto>> obtenerLotesPorIdCatastral(@RequestParam("idcatastral")
                                                                         final Integer idCatastral) {
-        return new ResponseEntity<>(loteService.obtenerLotesPorIdCatastral(), HttpStatus.OK);
+        return new ResponseEntity<>(loteService.obtenerLotesPorIdCatastral(idCatastral), HttpStatus.OK);
     }
 
     @PostMapping

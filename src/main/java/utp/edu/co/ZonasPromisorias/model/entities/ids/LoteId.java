@@ -1,6 +1,7 @@
 package utp.edu.co.zonaspromisorias.model.entities.ids;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import utp.edu.co.zonaspromisorias.model.entities.FincaEntity;
@@ -14,6 +15,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Embeddable
 public class LoteId implements Serializable {
     @ManyToOne

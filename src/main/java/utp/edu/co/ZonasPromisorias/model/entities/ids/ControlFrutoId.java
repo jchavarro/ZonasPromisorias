@@ -10,6 +10,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 @Data
 @AllArgsConstructor
@@ -22,5 +23,5 @@ public class ControlFrutoId implements Serializable {
     private LoteEntity lote;
 
     @Column(name = "fecha")
-    private Date fecha;
+    private Timestamp fecha;
 }
