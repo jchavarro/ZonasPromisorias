@@ -7,4 +7,6 @@ import utp.edu.co.zonaspromisorias.model.entities.ProductorEntity;
 @Repository
 public interface ProductorRepository extends JpaRepository<ProductorEntity, Integer> {
     ProductorEntity findByNombreUsuario(String username);
+
+    Boolean existsByNombreUsuario(String username);
 }

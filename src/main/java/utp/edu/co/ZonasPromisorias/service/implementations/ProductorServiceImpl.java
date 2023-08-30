@@ -38,12 +38,13 @@ public class ProductorServiceImpl implements ProductorService {
     @Override
     public ProductorDto guardarProductor(ProductorDto productorDto) {
         log.info("Creacion de Productor : " + productorDto.getNitProductor());
-        if (Boolean.TRUE.equals(validateProductor(productorDto))) {
-            ProductorEntity productor = productorRepository
-                    .save(crearProductorEntityPorProductorDto(productorDto));
-            return mapper.map(productor, ProductorDto.class);
-        } else throw new NotFoundException("Los campos de nit y nombre son obligatorios "
-                    + productorDto.getNitProductor());
+        if (Boolean.TRUE.equals(productorRepository.existsByNombreUsuario(productorDto.getNombreUsuario()))) {
+            throw new NotFoundException("El nombre de usuario ya existe: "
+                    + productorDto.getNombreUsuario());
+        }
+        ProductorEntity productor = productorRepository
+                .save(crearProductorEntityPorProductorDto(productorDto));
+        return mapper.map(productor, ProductorDto.class);
     }
 
     @Override
