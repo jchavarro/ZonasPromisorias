@@ -5,14 +5,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import utp.edu.co.zonaspromisorias.exceptions.types.NotFoundException;
 import utp.edu.co.zonaspromisorias.model.entities.FincaEntity;
 import utp.edu.co.zonaspromisorias.model.repositories.FincaRepository;
 import utp.edu.co.zonaspromisorias.service.interfaces.FincaService;
 import utp.edu.co.zonaspromisorias.web.dto.FincaDto;
+import utp.edu.co.zonaspromisorias.web.dto.response.FincaResponseDto;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static utp.edu.co.zonaspromisorias.service.utils.factories.FincaFactory.crearFincaEntityPorFincaDto;
 
 @AllArgsConstructor
 @Service
@@ -29,29 +34,29 @@ public class FincaServiceImpl implements FincaService {
     private FincaRepository fincaRepository;
 
     @Override
-    public FincaDto obtenerFincaPorId(Integer id) {
+    public FincaResponseDto obtenerFincaPorId(Integer id) {
         log.info("Consulta de Finca : " + id);
         return mapper.map(fincaRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("No se ha encontrado la finca: " + id)), FincaDto.class);
+                .orElseThrow(() -> new NotFoundException("No se ha encontrado la finca: " + id)), FincaResponseDto.class);
     }
 
     @Override
-    public FincaDto guardarFinca(FincaDto fincaDto) {
+    public FincaResponseDto guardarFinca(FincaDto fincaDto, MultipartFile imagenFinca) throws IOException {
         log.info("Creacion de Finca : " + fincaDto.getNombreFinca());
         if (Boolean.TRUE.equals(validateFinca(fincaDto))) {
             return mapper.map(fincaRepository
-                    .save(mapper.map(fincaDto, FincaEntity.class)), FincaDto.class);
+                    .save(crearFincaEntityPorFincaDto(fincaDto, imagenFinca)), FincaResponseDto.class);
         } else throw new NotFoundException("Los campos de nombre e identificacion son obligatorios ");
     }
 
     @Override
-    public FincaDto actualizarFinca(FincaDto fincaDto) {
+    public FincaResponseDto actualizarFinca(FincaDto fincaDto, MultipartFile imagenFinca) throws IOException {
         log.info("Actualizacion de Finca : " + fincaDto.getNombreFinca());
         fincaRepository.findById(fincaDto.getIdCatastral())
                 .orElseThrow(() -> new NotFoundException("No se ha encontrado la finca: "
                         + fincaDto.getIdCatastral()));
-        return mapper.map(fincaRepository.save(mapper.map(fincaDto, FincaEntity.class)),
-                FincaDto.class);
+        return mapper.map(fincaRepository.save(crearFincaEntityPorFincaDto(fincaDto, imagenFinca)),
+                FincaResponseDto.class);
     }
 
     @Override
@@ -64,10 +69,10 @@ public class FincaServiceImpl implements FincaService {
     }
 
     @Override
-    public List<FincaDto> obtenerFincas(final Integer id) {
+    public List<FincaResponseDto> obtenerFincas(final Integer id) {
         log.info("Consulta de Fincas");
         return fincaRepository.findByProductorNitProductor(id).stream()
-                .map(fincaEntity -> mapper.map(fincaEntity, FincaDto.class))
+                .map(fincaEntity -> mapper.map(fincaEntity, FincaResponseDto.class))
                 .collect(Collectors.toList());
     }
 

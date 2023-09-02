@@ -10,10 +10,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import utp.edu.co.zonaspromisorias.service.interfaces.FincaService;
 import utp.edu.co.zonaspromisorias.web.dto.FincaDto;
+import utp.edu.co.zonaspromisorias.web.dto.response.FincaResponseDto;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -24,23 +28,28 @@ public class FincaController {
     private FincaService fincaService;
 
     @GetMapping
-    public ResponseEntity<FincaDto> obtenerFincaPorId(@RequestParam("idcatastral") final Integer id) {
+    public ResponseEntity<FincaResponseDto> obtenerFincaPorId(@RequestParam("idcatastral") final Integer id) {
         return new ResponseEntity<>(fincaService.obtenerFincaPorId(id), HttpStatus.OK);
     }
 
     @GetMapping("all")
-    public ResponseEntity<List<FincaDto>> obtenerFincasPorProductor(@RequestParam("idproductor") final Integer id) {
+    public ResponseEntity<List<FincaResponseDto>> obtenerFincasPorProductor(
+            @RequestParam("idproductor") final Integer id) {
         return new ResponseEntity<>(fincaService.obtenerFincas(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<FincaDto> guardarFinca(@RequestBody final FincaDto fincaDto) {
-        return new ResponseEntity<>(fincaService.guardarFinca(fincaDto), HttpStatus.CREATED);
+    public ResponseEntity<FincaResponseDto> guardarFinca(@RequestPart("finca") final FincaDto fincaDto,
+                                                         @RequestPart("imagenFinca") final MultipartFile imagenFinca)
+            throws IOException {
+        return new ResponseEntity<>(fincaService.guardarFinca(fincaDto, imagenFinca), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<FincaDto> actualizarFinca(@RequestBody final FincaDto fincaDto) {
-        return new ResponseEntity<>(fincaService.actualizarFinca(fincaDto), HttpStatus.OK);
+    public ResponseEntity<FincaResponseDto> actualizarFinca(@RequestPart("finca") final FincaDto fincaDto,
+                                                            @RequestPart("imagenFinca") final MultipartFile imagenFinca)
+            throws IOException {
+        return new ResponseEntity<>(fincaService.actualizarFinca(fincaDto, imagenFinca), HttpStatus.OK);
     }
 
     @DeleteMapping

@@ -25,4 +25,18 @@ public final class ProductorFactory {
                 .contrasena(passwordEncoder.encode(productorDto.getContrasena()))
                 .build();
     }
+
+    public static ProductorDto crearProductorDtoPorProductorEntity(ProductorEntity productorEntity) {
+        return ProductorDto.builder()
+                .nitProductor(productorEntity.getNitProductor())
+                .nombreProductor(productorEntity.getNombreProductor())
+                .apellidosProductor(productorEntity.getApellidosProductor())
+                .direccionProductor(productorEntity.getDireccionProductor())
+                .telefonoProductor(productorEntity.getTelefonoProductor())
+                .imagenProductor(productorEntity.getImagenProductor())
+                .observacionesProductor(productorEntity.getObservacionesProductor())
+                .nombreUsuario(productorEntity.getNombreUsuario())
+                .contrasena(productorEntity.getContrasena())
+                .build();
+    }
 }

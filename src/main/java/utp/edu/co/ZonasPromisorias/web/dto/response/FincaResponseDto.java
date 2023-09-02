@@ -1,4 +1,4 @@
-package utp.edu.co.zonaspromisorias.web.dto;
+package utp.edu.co.zonaspromisorias.web.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
+import utp.edu.co.zonaspromisorias.web.dto.ProductorDto;
 
 import javax.persistence.Column;
 
@@ -14,7 +15,7 @@ import javax.persistence.Column;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FincaDto {
+public class FincaResponseDto {
 
     private Integer idCatastral;
 
@@ -25,6 +26,12 @@ public class FincaDto {
     private String direccionFinca;
 
     private String hectareasFinca;
+
+    private String nombreImagen;
+
+    private String tipoImagen;
+
+    private byte[] datosImagenFinca;
 
     private String observacionesFinca;
 
