@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import utp.edu.co.zonaspromisorias.model.entities.FincaEntity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
@@ -18,7 +19,7 @@ import java.io.Serializable;
 @Builder
 @Embeddable
 public class LoteId implements Serializable {
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "id_catastral")
     private FincaEntity finca;
 
