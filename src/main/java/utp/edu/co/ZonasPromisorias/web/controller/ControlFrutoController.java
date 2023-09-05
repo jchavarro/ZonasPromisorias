@@ -24,10 +24,8 @@ public class ControlFrutoController {
 
     @GetMapping
     public ResponseEntity<List<ControlFrutoDto>> obtenerControlFruto(
-            @RequestParam("idcatastral") final Integer idCatastral,
-            @RequestParam("numerolote") final Integer numeroLote) {
-        return new ResponseEntity<>(controlFrutoService.obtenerControlFrutoPorId(idCatastral, numeroLote),
-                HttpStatus.FOUND);
+            @RequestParam("idcatastral") final Integer idCatastral) {
+        return new ResponseEntity<>(controlFrutoService.obtenerControlFrutoPorId(idCatastral), HttpStatus.FOUND);
     }
 
     @GetMapping("/all")

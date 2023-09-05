@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ControlClimaRepository extends JpaRepository<ControlClimaEntity, ControlClimaId> {
     List<ControlClimaEntity>
-    findByIdLoteIdFincaIdCatastralAndIdLoteIdNumeroLote(Integer idCatastral, Integer numeroLote);
+    findByIdLoteIdFincaIdCatastral(Integer idCatastral);
 
     void deleteByIdLoteIdFincaIdCatastralAndIdLoteIdNumeroLoteAndIdFecha(Integer idCatastral, Integer numeroLote,
                                                                          Date fecha);

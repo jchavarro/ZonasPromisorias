@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ControlSueloRepository extends JpaRepository<ControlSueloEntity, ControlSueloId> {
     List<ControlSueloEntity>
-    findByIdLoteIdFincaIdCatastralAndIdLoteIdNumeroLote(Integer idCatastral, Integer numeroLote);
+    findByIdLoteIdFincaIdCatastral(Integer idCatastral);
 
     void deleteByIdLoteIdFincaIdCatastralAndIdLoteIdNumeroLoteAndIdFecha(Integer idCatastral, Integer numeroLote,
                                                                          Date fecha);

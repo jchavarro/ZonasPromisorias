@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface ControlSueloService {
-    List<ControlSueloDto> obtenerTodos(Integer idCatastral, Integer numeroLote);
+    List<ControlSueloDto> obtenerTodos(Integer idCatastral);
 
     List<ControlSueloDto> obtenerTodos();
 

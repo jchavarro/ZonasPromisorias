@@ -28,15 +28,15 @@ public class ControlSueloServiceImpl implements ControlSueloService {
     private ControlSueloRepository controlSueloRepository;
 
     @Override
-    public List<ControlSueloDto> obtenerTodos(Integer idCatastral, Integer numeroLote) {
+    public List<ControlSueloDto> obtenerTodos(Integer idCatastral) {
         log.info("Consulta de todos los ControlSuelo");
         List<ControlSueloDto> controlSueloDtos = controlSueloRepository
-                .findByIdLoteIdFincaIdCatastralAndIdLoteIdNumeroLote(idCatastral, numeroLote)
+                .findByIdLoteIdFincaIdCatastral(idCatastral)
                 .stream()
                 .map(ControlSueloFactory::crearControlSueloDtoPorControlSueloEntity)
                 .collect(Collectors.toList());
         if (!controlSueloDtos.isEmpty()) return controlSueloDtos;
-        else throw new NotFoundException("No se encontraron ControlSuelo para el lote: " + numeroLote);
+        else throw new NotFoundException("No se encontraron ControlSuelo para la finca:  " + idCatastral);
     }
 
     @Override

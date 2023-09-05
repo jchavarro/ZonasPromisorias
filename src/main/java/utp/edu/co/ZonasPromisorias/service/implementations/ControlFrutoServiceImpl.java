@@ -11,7 +11,6 @@ import utp.edu.co.zonaspromisorias.model.repositories.ControlFrutoRepository;
 import utp.edu.co.zonaspromisorias.service.interfaces.ControlFrutoService;
 import utp.edu.co.zonaspromisorias.service.utils.factories.ControlFrutoFactory;
 import utp.edu.co.zonaspromisorias.web.dto.ControlFrutoDto;
-import utp.edu.co.zonaspromisorias.web.dto.ControlSueloDto;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -29,16 +28,16 @@ public class ControlFrutoServiceImpl implements ControlFrutoService {
     private ControlFrutoRepository controlFrutoRepository;
 
     @Override
-    public List<ControlFrutoDto> obtenerControlFrutoPorId(Integer idCatastral, Integer numeroLote) {
+    public List<ControlFrutoDto> obtenerControlFrutoPorId(Integer idCatastral) {
         log.info("Consulta de todos los ControlFruto");
         List<ControlFrutoDto> controlFrutoDtos = controlFrutoRepository
-                .findByIdLoteIdFincaIdCatastralAndIdLoteIdNumeroLote(idCatastral, numeroLote)
+                .findByIdLoteIdFincaIdCatastral(idCatastral)
                 .stream()
                 .map(ControlFrutoFactory::crearControlFrutoDtoPorControlFrutoEntity)
                 .collect(Collectors.toList());
         if (!controlFrutoDtos.isEmpty()) return controlFrutoDtos;
         else throw new NotFoundException
-                ("No se encontraron ControlFruto para la finca: " + idCatastral + " " + numeroLote);
+                ("No se encontraron ControlFruto para la finca: " + idCatastral);
     }
 
     @Transactional(rollbackOn = BadRequestException.class)

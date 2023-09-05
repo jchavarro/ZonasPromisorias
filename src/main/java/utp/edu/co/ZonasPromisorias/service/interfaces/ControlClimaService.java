@@ -5,7 +5,7 @@ import utp.edu.co.zonaspromisorias.web.dto.ControlClimaDto;
 import java.util.List;
 
 public interface ControlClimaService {
-    List<ControlClimaDto> obtenerControlClimaPorId(Integer idCatastral, Integer numeroLote);
+    List<ControlClimaDto> obtenerControlClimaPorId(Integer idCatastral);
 
     List<ControlClimaDto> crearControlClima(List<ControlClimaDto> controlClimaDto);
 

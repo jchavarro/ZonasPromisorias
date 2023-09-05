@@ -5,7 +5,7 @@ import utp.edu.co.zonaspromisorias.web.dto.ControlFrutoDto;
 import java.util.List;
 
 public interface ControlFrutoService {
-    List<ControlFrutoDto> obtenerControlFrutoPorId(Integer idCatastral, Integer numeroLote);
+    List<ControlFrutoDto> obtenerControlFrutoPorId(Integer idCatastral);
 
     List<ControlFrutoDto> crearControlFruto(List<ControlFrutoDto> controlFrutoDto);
 

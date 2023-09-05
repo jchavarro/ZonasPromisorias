@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ControlFrutoRepository extends JpaRepository<ControlFrutoEntity, ControlFrutoId> {
     List<ControlFrutoEntity>
-    findByIdLoteIdFincaIdCatastralAndIdLoteIdNumeroLote(Integer idCatastral, Integer numeroLote);
+    findByIdLoteIdFincaIdCatastral(Integer idCatastral);
 
     void deleteByIdLoteIdFincaIdCatastralAndIdLoteIdNumeroLoteAndIdFecha(Integer idCatastral, Integer numeroLote,
                                                                          Date fecha);

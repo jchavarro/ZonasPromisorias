@@ -29,15 +29,15 @@ public class ControlClimaServiceImpl implements ControlClimaService {
     private ControlClimaRepository controlClimaRepository;
 
     @Override
-    public List<ControlClimaDto> obtenerControlClimaPorId(Integer idCatastral, Integer numeroLote) {
+    public List<ControlClimaDto> obtenerControlClimaPorId(Integer idCatastral) {
         log.info("Consulta de todos los ControlClima");
         List<ControlClimaDto> controlClimaDtos = controlClimaRepository
-                .findByIdLoteIdFincaIdCatastralAndIdLoteIdNumeroLote(idCatastral, numeroLote)
+                .findByIdLoteIdFincaIdCatastral(idCatastral)
                 .stream()
                 .map(ControlClimaFactory::crearControlClimaDtoPorClimaEntity)
                 .collect(Collectors.toList());
         if (!controlClimaDtos.isEmpty()) return controlClimaDtos;
-        else throw new NotFoundException("No se encontró control clima por " + idCatastral + " " + numeroLote);
+        else throw new NotFoundException("No se encontró control clima por " + idCatastral);
     }
 
     @Transactional(rollbackOn = BadRequestException.class)

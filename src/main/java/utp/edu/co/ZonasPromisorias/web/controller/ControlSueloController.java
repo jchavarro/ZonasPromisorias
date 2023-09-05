@@ -28,15 +28,12 @@ public class ControlSueloController {
 
     @GetMapping("/all")
     public ResponseEntity<List<ControlSueloDto>> obtenerTodos() {
-        return new ResponseEntity<>(controlSueloService
-                .obtenerTodos(), HttpStatus.OK);
+        return new ResponseEntity<>(controlSueloService.obtenerTodos(), HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<List<ControlSueloDto>> obtenerTodos(@RequestParam("idcatastral") final Integer idCatastral,
-                                                              @RequestParam("numerolote") final Integer numeroLote) {
-        return new ResponseEntity<>(controlSueloService
-                .obtenerTodos(idCatastral, numeroLote), HttpStatus.OK);
+    public ResponseEntity<List<ControlSueloDto>> obtenerTodos(@RequestParam("idcatastral") final Integer idCatastral) {
+        return new ResponseEntity<>(controlSueloService.obtenerTodos(idCatastral), HttpStatus.OK);
     }
 
     @PostMapping
