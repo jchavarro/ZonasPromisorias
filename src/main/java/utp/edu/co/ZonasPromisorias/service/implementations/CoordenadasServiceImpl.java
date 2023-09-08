@@ -26,6 +26,17 @@ public class CoordenadasServiceImpl implements CoordenadasService {
     @Autowired
     private CoordenadasPoligonoRepository coordenadasPoligonoRepository;
 
+    @Override
+    public List<CoordenadasDto> obtenerCoordenadasPorIdCatastral(Integer idCatastral) {
+        log.info("Consulta de Coordenadas : " + idCatastral );
+        List<CoordenadasDto> coordenadasDtos =  coordenadasPoligonoRepository
+                .findByIdLoteIdFincaIdCatastral(idCatastral)
+                .stream()
+                .map(CoordenadaFactory::crearCoordenadaDtoPorCoordenadaEntity)
+                .collect(Collectors.toList());
+        if (!coordenadasDtos.isEmpty()) return coordenadasDtos;
+        else throw new NotFoundException("No se encontraron coordenadas para la finca: " + idCatastral);
+    }
 
     @Override
     public List<CoordenadasDto> obtenerCoordenadasPorIdCatastral(Integer idCatastral, Integer numeroLote) {

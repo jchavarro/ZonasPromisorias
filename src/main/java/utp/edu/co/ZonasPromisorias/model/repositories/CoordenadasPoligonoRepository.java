@@ -11,6 +11,9 @@ import java.util.Optional;
 public interface CoordenadasPoligonoRepository extends JpaRepository<CoordenadasPoligonoEntity, CoordenadasPoligonoId> {
 
     List<CoordenadasPoligonoEntity>
+    findByIdLoteIdFincaIdCatastral(Integer idCatastral);
+
+    List<CoordenadasPoligonoEntity>
     findByIdLoteIdFincaIdCatastralAndIdLoteIdNumeroLote(Integer idCatastral, Integer numeroLote);
 
     void deleteByIdLoteIdFincaIdCatastralAndIdLoteIdNumeroLote(Integer idCatastral, Integer numeroLote);

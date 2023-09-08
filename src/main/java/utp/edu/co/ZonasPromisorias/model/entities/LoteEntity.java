@@ -30,16 +30,16 @@ public class LoteEntity implements Serializable {
     @Column(name = "nombre_lote")
     private String nombreLote;
 
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "id.lote", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "id.lote")
     private List<CoordenadasPoligonoEntity> coordenadasPoligono;
 
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "id.lote", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "id.lote")
     private List<ControlSueloEntity> controlesSuelo;
 
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "id.lote", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "id.lote")
     private List<ControlFrutoEntity> controlesFruto;
 
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "id.lote", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "id.lote")
     private List<ControlClimaEntity> controlesClima;
 
 }

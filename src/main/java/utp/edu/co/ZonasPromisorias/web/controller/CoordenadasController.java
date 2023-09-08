@@ -22,6 +22,13 @@ public class CoordenadasController {
     @Autowired
     private CoordenadasService coordenadasService;
 
+    @GetMapping("/finca")
+    public ResponseEntity<List<CoordenadasDto>> obtenerCoordenadasPorFinca(
+            @RequestParam("idcatastral") final Integer idCatastral) {
+        return new ResponseEntity<>(coordenadasService
+                .obtenerCoordenadasPorIdCatastral(idCatastral), HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<CoordenadasDto>> obtenerCoordenadasPorLote(
             @RequestParam("idcatastral") final Integer idCatastral,
