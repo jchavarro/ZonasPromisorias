@@ -25,7 +25,7 @@ public class ControlFrutoController {
     @GetMapping
     public ResponseEntity<List<ControlFrutoDto>> obtenerControlFruto(
             @RequestParam("idcatastral") final Integer idCatastral) {
-        return new ResponseEntity<>(controlFrutoService.obtenerControlFrutoPorId(idCatastral), HttpStatus.FOUND);
+        return new ResponseEntity<>(controlFrutoService.obtenerControlFrutoPorId(idCatastral), HttpStatus.OK);
     }
 
     @GetMapping("/all")

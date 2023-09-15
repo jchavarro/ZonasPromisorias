@@ -25,6 +25,8 @@ public final class ControlClimaFactory {
                 .radiacionSolar(controlClimaEntity.getRadiacionSolar())
                 .direccionViento(controlClimaEntity.getDireccionViento())
                 .velocidadViento(controlClimaEntity.getVelocidadViento())
+                .humedadSuelo(controlClimaEntity.getHumedadSuelo())
+                .temperaturaSuelo(controlClimaEntity.getTemperaturaSuelo())
                 .build();
     }
 
@@ -38,6 +40,8 @@ public final class ControlClimaFactory {
                 .radiacionSolar(controlClimaDto.getRadiacionSolar())
                 .direccionViento(controlClimaDto.getDireccionViento())
                 .velocidadViento(controlClimaDto.getVelocidadViento())
+                .humedadSuelo(controlClimaDto.getHumedadSuelo())
+                .temperaturaSuelo(controlClimaDto.getTemperaturaSuelo())
                 .build();
     }
 

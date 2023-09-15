@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import java.math.BigDecimal;
 
 @Data
@@ -34,4 +35,13 @@ public class ControlSueloDto {
     private BigDecimal elementoNa;
 
     private BigDecimal elementoP;
+
+    private BigDecimal elementoN;
+
+    private BigDecimal elementoAl;
+
+    private BigDecimal elementoCo;
+
+    private BigDecimal porcentajeMin;
+
 }

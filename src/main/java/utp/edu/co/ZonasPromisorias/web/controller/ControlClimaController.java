@@ -25,7 +25,7 @@ public class ControlClimaController {
     @GetMapping
     public ResponseEntity<List<ControlClimaDto>> obtenerControlClima(
             @RequestParam("idcatastral") final Integer idCatastral) {
-        return new ResponseEntity<>(controlClimaService.obtenerControlClimaPorId(idCatastral), HttpStatus.FOUND);
+        return new ResponseEntity<>(controlClimaService.obtenerControlClimaPorId(idCatastral), HttpStatus.OK);
     }
 
     @GetMapping("/all")

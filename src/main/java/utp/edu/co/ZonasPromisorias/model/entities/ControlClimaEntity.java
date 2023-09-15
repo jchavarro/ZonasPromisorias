@@ -42,4 +42,10 @@ public class ControlClimaEntity implements Serializable {
 
     @Column(name = "velocidad_viento")
     private BigDecimal velocidadViento;
+
+    @Column(name = "humedad_suelo")
+    private BigDecimal humedadSuelo;
+
+    @Column(name = "temperatura_suelo")
+    private BigDecimal temperaturaSuelo;
 }

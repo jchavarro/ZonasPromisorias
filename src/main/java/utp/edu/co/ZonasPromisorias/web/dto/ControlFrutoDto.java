@@ -22,7 +22,7 @@ public class ControlFrutoDto {
 
     private BigDecimal tamano;
 
-    private BigDecimal perfilesAcidosGrasos;
+    private BigDecimal clasificacionCf;
 
     private BigDecimal materiaSeca;
 

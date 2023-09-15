@@ -29,6 +29,10 @@ public final class ControlSueloFactory {
                 .elementoMg(controlSueloDto.getElementoMg())
                 .elementoNa(controlSueloDto.getElementoNa())
                 .elementoP(controlSueloDto.getElementoP())
+                .elementoN(controlSueloDto.getElementoN())
+                .elementoAl(controlSueloDto.getElementoAl())
+                .elementoCo(controlSueloDto.getElementoCo())
+                .porcentajeMin(controlSueloDto.getPorcentajeMin())
                 .build();
     }
 
@@ -44,6 +48,10 @@ public final class ControlSueloFactory {
                 .elementoMg(controlSueloEntity.getElementoMg())
                 .elementoNa(controlSueloEntity.getElementoNa())
                 .elementoP(controlSueloEntity.getElementoP())
+                .elementoN(controlSueloEntity.getElementoN())
+                .elementoAl(controlSueloEntity.getElementoAl())
+                .elementoCo(controlSueloEntity.getElementoCo())
+                .porcentajeMin(controlSueloEntity.getPorcentajeMin())
                 .build();
     }
 

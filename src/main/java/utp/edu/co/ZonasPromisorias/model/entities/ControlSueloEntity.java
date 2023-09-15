@@ -47,4 +47,16 @@ public class ControlSueloEntity implements Serializable {
     @Column(name = "elemento_p")
     private BigDecimal elementoP;
 
+    @Column(name = "elemento_n")
+    private BigDecimal elementoN;
+
+    @Column(name = "elemento_al")
+    private BigDecimal elementoAl;
+
+    @Column(name = "elemento_co")
+    private BigDecimal elementoCo;
+
+    @Column(name = "porcentaje_min")
+    private BigDecimal porcentajeMin;
+
 }

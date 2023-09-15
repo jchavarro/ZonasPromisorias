@@ -28,8 +28,8 @@ public class ControlFrutoEntity implements Serializable {
     @Column(name = "tamano")
     private BigDecimal tamano;
 
-    @Column(name = "perfiles_acidos_grasos")
-    private BigDecimal perfilesAcidosGrasos;
+    @Column(name = "clasificacion_cf")
+    private BigDecimal clasificacionCf;
 
     @Column(name = "materia_seca")
     private BigDecimal materiaSeca;

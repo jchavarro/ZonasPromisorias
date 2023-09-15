@@ -33,4 +33,8 @@ public class ControlClimaDto {
     private BigDecimal direccionViento;
 
     private BigDecimal velocidadViento;
+
+    private BigDecimal humedadSuelo;
+
+    private BigDecimal temperaturaSuelo;
 }
