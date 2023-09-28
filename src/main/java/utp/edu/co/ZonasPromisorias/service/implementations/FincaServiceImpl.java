@@ -10,6 +10,7 @@ import utp.edu.co.zonaspromisorias.exceptions.types.NotFoundException;
 import utp.edu.co.zonaspromisorias.model.entities.FincaEntity;
 import utp.edu.co.zonaspromisorias.model.repositories.FincaRepository;
 import utp.edu.co.zonaspromisorias.service.interfaces.FincaService;
+import utp.edu.co.zonaspromisorias.service.utils.models.PythonModel;
 import utp.edu.co.zonaspromisorias.web.dto.FincaDto;
 import utp.edu.co.zonaspromisorias.web.dto.response.FincaResponseDto;
 
@@ -32,6 +33,9 @@ public class FincaServiceImpl implements FincaService {
 
     @Autowired
     private FincaRepository fincaRepository;
+
+    @Autowired
+    private PythonModel pythonModel;
 
     @Override
     public FincaResponseDto obtenerFincaPorId(Integer id) {
@@ -74,6 +78,11 @@ public class FincaServiceImpl implements FincaService {
         return fincaRepository.findByProductorNitProductor(id).stream()
                 .map(fincaEntity -> mapper.map(fincaEntity, FincaResponseDto.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Boolean obtenerModeloFinca() {
+        return pythonModel.obtenerResultadoModelo();
     }
 
     private Boolean validateFinca(FincaDto fincaDto) {

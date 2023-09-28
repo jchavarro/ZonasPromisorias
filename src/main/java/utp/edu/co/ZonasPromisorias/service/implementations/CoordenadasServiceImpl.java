@@ -74,4 +74,12 @@ public class CoordenadasServiceImpl implements CoordenadasService {
         }
         else throw new NotFoundException("No se encontraron coordenadas para el lote: " + numeroLote);
     }
+
+    @Override
+    public List<CoordenadasDto> obtenerCoordenadas() {
+        log.info("Consulta de todas las Coordenadas");
+        return coordenadasPoligonoRepository.findAll().stream()
+                .map(CoordenadaFactory::crearCoordenadaDtoPorCoordenadaEntity)
+                .collect(Collectors.toList());
+    }
 }

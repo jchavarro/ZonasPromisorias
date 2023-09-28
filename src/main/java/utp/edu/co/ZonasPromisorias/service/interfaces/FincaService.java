@@ -17,4 +17,6 @@ public interface FincaService {
     Boolean eliminarFinca(Integer id);
 
     List<FincaResponseDto> obtenerFincas(Integer id);
+
+    Boolean obtenerModeloFinca();
 }

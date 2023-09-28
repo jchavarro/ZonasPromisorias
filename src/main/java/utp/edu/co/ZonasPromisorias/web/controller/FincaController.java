@@ -38,6 +38,11 @@ public class FincaController {
         return new ResponseEntity<>(fincaService.obtenerFincas(id), HttpStatus.OK);
     }
 
+    @GetMapping("model")
+    public ResponseEntity<Boolean> obtenerModeloFinca() {
+        return new ResponseEntity<>(fincaService.obtenerModeloFinca(), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<FincaResponseDto> guardarFinca(@RequestPart("finca") final FincaDto fincaDto,
                                                          @RequestPart("imagenFinca") final MultipartFile imagenFinca)

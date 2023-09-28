@@ -12,4 +12,6 @@ public interface CoordenadasService {
     List<CoordenadasDto> guardarCoordenadas(List<CoordenadasDto> coordenadasDto);
 
     Boolean eliminarCoordenadas(Integer idCatastral, Integer numeroLote);
+
+    List<CoordenadasDto> obtenerCoordenadas();
 }

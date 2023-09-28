@@ -37,6 +37,11 @@ public class CoordenadasController {
                 .obtenerCoordenadasPorIdCatastral(idCatastral, numeroLote), HttpStatus.OK);
     }
 
+    @GetMapping("all")
+    public ResponseEntity<List<CoordenadasDto>> obtenerCoordenadas() {
+        return new ResponseEntity<>(coordenadasService.obtenerCoordenadas(), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<List<CoordenadasDto>> guardarCoordenadas(
             @RequestBody final List<CoordenadasDto> coordenadasDto) {
